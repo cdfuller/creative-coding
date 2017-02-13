@@ -32,9 +32,9 @@ function draw() {
 
 }
 
-function mouseClicked() {
-    renderScreen();
-}
+// function mouseClicked() {
+//     renderScreen();
+// }
 
 
 var renderScreen = function() {
@@ -128,4 +128,18 @@ function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function updateGridDimensions(){
+    ROWS = parseInt(height / CUBESIZE);
+    COLS = parseInt(width / CUBESIZE);
+
+    ANGLE = 30;
+
+    // Hack to offset by proper amount;    
+    CUBE_OFFSET_X = Math.cos(radians(ANGLE)) * CUBESIZE;
+    CUBE_OFFSET_Y = Math.sin(radians(ANGLE)) * CUBESIZE;
+
+    // Track locations    
+    GRID = createGrid(ROWS, COLS, CUBESIZE);
 }

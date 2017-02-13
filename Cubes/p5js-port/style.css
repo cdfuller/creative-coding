@@ -3,7 +3,16 @@ body {
     margin: 0;
 }
 
+#container {
+    width: 800px;
+    margin: 0 auto;
+}
+
 #sketch-container {
     width: 640px;
     margin: 0 auto;
+}
+
+#container {
+    text-align: center;
 }
