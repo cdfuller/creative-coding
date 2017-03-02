@@ -9,4 +9,14 @@ $(function() {
             renderScreen();
         }
     });
+
+    $("#cubes-count-slider").slider({
+        min: 100,
+        max: 3000,
+        value: 250,
+        slide: function(event, ui){
+            NUMCUBES = ui.value;
+            renderScreen();
+        }
+    })
 });
