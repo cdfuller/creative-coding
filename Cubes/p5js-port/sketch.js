@@ -1,3 +1,25 @@
+var palette = [
+    "#F44336",
+    "#E91E63",
+    "#9C27B0",
+    "#673AB7",
+    "#3F51B5",
+    "#2196F3",
+    "#03A9F4",
+    "#00BCD4",
+    "#009688",
+    "#4CAF50",
+    "#8BC34A",
+    "#CDDC39",
+    "#FFEB3B",
+    "#FFC107",
+    "#FF9800",
+    "#FF5722",
+    "#795548",
+    "#9E9E9E",
+    "#607D8B"
+]
+
 function setup() {
     var canvas = createCanvas(640, 640);
     canvas.parent('sketch-container');
@@ -44,19 +66,19 @@ var renderScreen = function() {
         var col = getRandomIntInclusive(0, COLS);
         var cell = GRID[row][col];
 
-        var _h = currentHue % 360;
-        currentHue += COLOROFFSET;
 
         // Offset 50%
         if (Math.random() > 0.5) {
+            var _h = getColor(cell.x + CUBE_OFFSET_X, cell.y + CUBE_OFFSET_Y);
             drawCube(cell.x, cell.y, _h);
         } else {
+            var _h = getColor(cell.x + CUBE_OFFSET_X, cell.y + CUBE_OFFSET_Y);
             drawCube(cell.x + CUBE_OFFSET_X, cell.y + CUBE_OFFSET_Y, _h);
         }
     }
 }
 
-var drawCube = function(x, y, cubeHue, cubeSaturation = 90, contrastDiff = 30) {
+var drawCube = function(x, y, baseColor, cubeSaturation = 90, contrastDiff = 30) {
     var center = { x: x, y: y };
 
     var width = Math.cos(radians(ANGLE)) * CUBESIZE;
@@ -75,9 +97,9 @@ var drawCube = function(x, y, cubeHue, cubeSaturation = 90, contrastDiff = 30) {
 
     // Determine colors
     // 
-    var westFaceColor = color(cubeHue, cubeSaturation, 60);
-    var eastFaceColor = color(cubeHue, cubeSaturation, 60 - contrastDiff);
-    var northFaceColor = color(cubeHue, cubeSaturation, 60 + contrastDiff);
+    var westFaceColor = baseColor;
+    var eastFaceColor = color(hue(baseColor), saturation(baseColor), brightness(baseColor) - contrastDiff);
+    var northFaceColor = color(hue(baseColor), saturation(baseColor), brightness(baseColor) + contrastDiff);
 
     // North Face  
     fill(northFaceColor);
@@ -122,6 +144,17 @@ var createGrid = function(rows, cols, cubeSize) {
     }
 
     return grid;
+}
+
+function getColor(x, y){
+    if ( typeof palette != 'undefined' && palette.length > 0){
+        return color(random(palette));
+    } else {
+        var _h = currentHue % 360;
+        currentHue += COLOROFFSET;
+        return color(currentHue, 90, 60);
+    }
+
 }
 
 function getRandomIntInclusive(min, max) {
