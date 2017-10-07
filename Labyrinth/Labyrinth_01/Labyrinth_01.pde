@@ -7,7 +7,7 @@ void setup() {
   cell_num_vert = height / cs;
   cell_num_horz = width / cs;
   drawScreen();
-  saveFrame("labyrinth-01.png");
+  //saveFrame("labyrinth-01.png");
 }
 
 void draw() {
@@ -15,6 +15,7 @@ void draw() {
 
 
 void drawScreen() {
+  background(255);
   strokeWeight(2);
   stroke(0);
   strokeCap(SQUARE);
@@ -36,4 +37,8 @@ void drawScreen() {
       }
     }
   }
+}
+
+void keyPressed(){
+  drawScreen();
 }
