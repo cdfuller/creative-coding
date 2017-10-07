@@ -1,5 +1,6 @@
 import java.util.Date;
 int side_length = 60;
+int line_weight = 30;
 
 void setup(){
   size(1000, 1000);
@@ -17,17 +18,16 @@ void draw(){
 
 
 void drawScreen(){
-   side_length = 60;
   background(201, 100, 34);
- for(int i=0; i<width; i+=side_length){
-   for(int j=0; j<height; j+=side_length){
-    draw_diagonal_line(i, j, side_length);
-   }
- } 
+  for(int i=0; i<width; i+=side_length){
+    for(int j=0; j<height; j+=side_length){
+      draw_diagonal_line(i, j, side_length);
+    }
+  } 
 }
 
 void draw_line(float x, float y, float square_size){
-  strokeWeight(8);
+  strokeWeight(line_weight);
   stroke(0, 0, 100);
 
   if(random(100) < 50){
@@ -43,9 +43,9 @@ void draw_line(float x, float y, float square_size){
 }
 
 void draw_diagonal_line(float x, float y, float square_size){
-  strokeWeight(30);
+  strokeWeight(line_weight);
   stroke(0, 0, 100);
-  if(random(100) > 60){
+  if(random(100) > 10){
     if(random(100) < 50){
       line(x, y, x+square_size, y+square_size);
     } else {
