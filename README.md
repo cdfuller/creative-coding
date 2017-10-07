@@ -8,5 +8,7 @@ Mixing logic and art is one of my passions and this is where I hold many of my s
 	* Isometric cubes drawn at random. I want to add the option to specifiy colors, cubify an image, and other various rules.
 * [Mathematical Roses](http://fuller.codes/creative-coding/Math_Roses/)
 	* Created with some modifications following the tutorial [Coding Challenge #55: Mathematical Rose Patterns](https://www.youtube.com/watch?v=f5QBExMNB1I) by Daniel Shiffman
+* [Perlin Noise Flow Fields](http://fuller.codes/creative-coding/Flow_Fields/)
+	* Based off of [Coding Challenge #24: Perlin Noise Flow Field](https://www.youtube.com/watch?v=BjoM9oKOAKY) by Dan Shiffman
 * [Reas Circles](http://fuller.codes/creative-coding/Reas_Circles/)
-	* 	First steps towards recreating the [work of Casey Reas](http://reas.com/compendium_lecture/)
+	* First steps towards recreating the [work of Casey Reas](http://reas.com/compendium_lecture/)
