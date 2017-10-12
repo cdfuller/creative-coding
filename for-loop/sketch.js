@@ -1,11 +1,15 @@
+config = {
+  'Line color': [42, 226, 29],
+  'BG color': [22, 18, 79],
+  '# of lines': 10000,
+  'Line weight': 0.2,
+  'Redraw': drawScreen,
+}
+
 function setup() {
   createCanvas(1000, 1000);
   drawGUI();
-}
-
-function draw() {
   drawScreen();
-  noLoop();
 }
 
 function drawScreen() {
@@ -17,19 +21,11 @@ function drawScreen() {
     let x2 = random(width);
     line(x, 0, x2, height);
   }
-  console.table(config);
+  console.log(config);
 }
 
 function drawGUI() {
   let gui = new dat.GUI();
-  config = {
-    'Line color': [42, 226, 29],
-    'BG color': [22, 18, 79],
-    '# of lines': 10000,
-    'Line weight': 0.2,
-    'Redraw': drawScreen,
-  }
-
   let colors = gui.addFolder('Colors');
   colors.open();
   colors.addColor(config, 'Line color');
