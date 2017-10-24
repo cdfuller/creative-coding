@@ -11,6 +11,7 @@ config = {
 
 function setup() {
   createCanvas(1000, 1000);
+  pixelDensity(1);
   colorMode(HSB);
   drawGUI();
   drawScreen();
