@@ -19,6 +19,50 @@ function draw() {
   g = tickGrid(g);
 }
 
+// a SIMULATION will contain an array of GENERATIONS (rows) that will contain an array of CELLS which have STATES that are determined via RULES
+
+function Simulation(args) {
+  this.history_length = args.history_length || 100;
+  this.generation = args.generation || 0;
+  // Use a queue because we want a FIFO data structure to use with the history_length.
+  this.queue = args.queue || new Array(this.history_length);
+  // Do we want to keep track fo rows and cols in the Simulation object?
+  // this.rows ??
+  // this.cols ??
+}
+
+
+Simulation.prototype.tick = function() {
+
+}
+
+
+Simulation.prototype.draw = function() {
+  // Draw most recent generations limited to the amount we can fit on the screen
+}
+
+// FSM
+
+// function Grid(cell_size) {
+//   this.cell_size = cell_size;
+//   // this.num_cells = function(odd_num_cells) {
+//   //   let n = int(width / odd_num_cells);
+    
+//   // }(odd_num_cells);
+//   let self = this;
+//   this.cells = function() {
+//     let new_cells = [];
+//     for (let row = 0; row * self.cell_size < height; row++) {
+//       new_cells[row] = [];
+//       for (let col = 0; col * self.cell_size < width; col++) {
+//         let cell = random([0, 1]);
+//         new_cells[row][col] = cell;
+//       }
+//     }
+//     return new_cells;
+//   }();
+// }
+
 
 function createGrid(width, height) {
   let new_grid = new Array(height);
@@ -74,3 +118,11 @@ function drawGrid(grid) {
     }
   }
 }
+
+
+// Utils
+
+// https://stackoverflow.com/questions/9939760/how-do-i-convert-an-integer-to-binary-in-javascript/16155417#16155417
+function dec2bin(dec){
+  return (dec >>> 0).toString(2);
+} 
