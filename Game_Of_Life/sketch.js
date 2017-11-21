@@ -1,7 +1,7 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
   // frameRate(10);
-  g = new Grid(5);
+  g = new Grid(10);
 }
 
 function draw() {
@@ -60,7 +60,7 @@ Cell.prototype.draw = function() {
 }
 
 Cell.prototype.drawHeatMap = function(_min, _max) {
-  var shade = map(this.time_alive, _min, _max, 0, 255, true);
+  var shade = map(this.time_alive, _min, _max, 128, 255, true);
   fill(shade);
   rect(this.x, this.y, this.x + this.side_length, this.y + this.side_length);
 }
