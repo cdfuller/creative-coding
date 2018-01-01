@@ -1,3 +1,6 @@
+const PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
+const FIBONACCI = [1, 2, 3, 5, 8, 13, 21, 34];
+
 let p1;
 let p2;
 
@@ -6,9 +9,12 @@ function setup() {
 	createCanvas(shortestSide, shortestSide);
 	angleMode(DEGREES);
 	background(255);
+
 	let m = min(width, height) * 0.50;
-	p1 = new Planet(random(50, m), random(360), random(10));
-	p2 = new Planet(random(50, m), random(360), random(10));
+	p1 = new Planet(random(50, m), random(360), random(FIBONACCI));
+	p2 = new Planet(random(50, m), random(360), random(FIBONACCI));
+	console.log(`p1: ${p1}`);
+	console.log(`p2: ${p2}`);
 }
 
 function draw() {
@@ -36,6 +42,7 @@ function Planet(r, theta, speed) {
 
 	this.drawConnectingLine = function connectPlanet(otherPlanet) {
 		push();
+
 		translate(width/2, height/2);
 		strokeWeight(0.1);
 		line(this.loc.x(), this.loc.y(), otherPlanet.loc.x(), otherPlanet.loc.y());
@@ -46,11 +53,21 @@ function Planet(r, theta, speed) {
 	this.update = function update() {
 		this.loc.theta += this.speed;
 	}
+
+	this.toString = function planetToString() {
+		let r = this.loc.r.toFixed(2);
+		let t = this.loc.theta.toFixed(2);
+		let x = this.loc.x().toFixed();
+		let y = this.loc.y().toFixed();
+		let s = this.speed.toFixed(2);
+		return `r: ${r} t: ${t} x: ${x} y: ${y} s: ${s}`;
+	}
 }
 
 function System() {
 	this.planets = []
 }
+
 
 function PolarVector(r, theta) {
 	this.r = r;
@@ -61,10 +78,13 @@ function PolarVector(r, theta) {
 
 }
 
+
 function keyPressed() {
 	if (keyCode === 32) { // 32 === ' '
 		noLoop();
+		console.log("Stopped", frameCount);
 	} else if (keyCode === 76) { // l === 76
+		console.log("looping");
 		loop();
 	}
 }
