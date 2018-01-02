@@ -16,9 +16,9 @@ function setup() {
 
 	// PLAY WITH THESE NUMBERS;
 	// Starting points
-	let s1 = random(FIBONACCI) / 100;
-	let s2 = random(FIBONACCI) / 100;
-	let s3 = random(FIBONACCI) / 100;
+	let s1 = random(1);
+	let s2 = random(2);
+	let s3 = random(4);
 
 	// THETA
 	let t1 = random(50, midpoint);
