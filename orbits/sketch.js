@@ -1,8 +1,9 @@
-const PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
-const FIBONACCI = [1, 2, 3, 5, 8, 13, 21, 34];
+const PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+const FIBONACCI = [1, 2, 3, 5, 8, 13, 21];
 
 let p1;
 let p2;
+let p3;
 
 function setup() {
 	let shortestSide = min(windowWidth, windowHeight);
@@ -10,24 +11,43 @@ function setup() {
 	angleMode(DEGREES);
 	background(255);
 
-	let m = min(width, height) * 0.50;
-	p1 = new Planet(random(50, m), random(360), random(FIBONACCI));
-	p2 = new Planet(random(50, m), random(360), random(FIBONACCI));
+	let maxD = min(width, height) * 0.50;
+	let midpoint = random(maxD*0.9);
+
+	// PLAY WITH THESE NUMBERS;
+	// Starting points
+	let s1 = random(FIBONACCI) / 100;
+	let s2 = random(FIBONACCI) / 100;
+	let s3 = random(FIBONACCI) / 100;
+
+	// THETA
+	let t1 = random(50, midpoint);
+	let t2 = random(t1, maxD);
+	let t3 = random(t2, maxD);
+
+	p1 = new Planet(t1, -90, s1);
+	p2 = new Planet(t2, -90, s2);
+	p3 = new Planet(t3, -90, s3);
 	console.log(`p1: ${p1}`);
 	console.log(`p2: ${p2}`);
+	console.log(`p3: ${p3}`);
 }
 
 function draw() {
 	// p1.draw();
 	p1.update();
 	p2.update();
+	p3.update();
 
 	p1.drawConnectingLine(p2);
+	p3.drawConnectingLine(p1);
+	p3.drawConnectingLine(p2);
 }
 
-function Planet(r, theta, speed) {
+function Planet(r, theta, speed, center) {
 	this.speed = speed;
 	this.loc = new PolarVector(r, theta);
+	this.center = center;
 
 	this.draw = function drawPlanet() {
 		push();
@@ -44,7 +64,7 @@ function Planet(r, theta, speed) {
 		push();
 
 		translate(width/2, height/2);
-		strokeWeight(0.1);
+		strokeWeight(0.05);
 		line(this.loc.x(), this.loc.y(), otherPlanet.loc.x(), otherPlanet.loc.y());
 
 		pop();
@@ -64,9 +84,9 @@ function Planet(r, theta, speed) {
 	}
 }
 
-function System() {
-	this.planets = []
-}
+// function System() {
+// 	this.planets = []
+// }
 
 
 function PolarVector(r, theta) {
@@ -86,5 +106,10 @@ function keyPressed() {
 	} else if (keyCode === 76) { // l === 76
 		console.log("looping");
 		loop();
+	} else if (keyCode === 83) { // s === 83
+		redraw();
 	}
+	// } else {
+	// 	console.log(keyCode);
+	// }
 }
