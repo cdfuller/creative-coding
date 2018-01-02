@@ -4,3 +4,9 @@
 	* Could use an eye-dropper mechanism for setting colors.
 	* Can also load images
 	* Look into programmatically tesselating different shapes.
+
+TODO:
+
+Right now the triangles are only pointing one direction. Need to read up on tesselation techniques.
+
+Create a Shape class and then a Triangle subclass? Maybe two triangle subclasses depending on orientation? Seems like a bad idea though. One shape should be able to tesselate with itself.
