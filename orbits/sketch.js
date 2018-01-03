@@ -25,9 +25,15 @@ function setup() {
 	let t2 = random(t1, maxD);
 	let t3 = random(t2, maxD);
 
-	p1 = new Planet(t1, -90, s1);
-	p2 = new Planet(t2, -90, s2);
-	p3 = new Planet(t3, -90, s3);
+	// Center points
+	let c1 = createVector(width/2, height/2);
+	let c2 = createVector(width/2, height/2);
+	let c3 = createVector(width/2, height/2);
+
+	p1 = new Planet(t1, -90, s1, c1);
+	p2 = new Planet(t2, -90, s2, c2);
+	p3 = new Planet(t3, -90, s3, c3);
+
 	console.log(`p1: ${p1}`);
 	console.log(`p2: ${p2}`);
 	console.log(`p3: ${p3}`);
@@ -53,7 +59,7 @@ function Planet(r, theta, speed, center) {
 		push();
 
 		noStroke();
-		translate(width/2, height/2);
+		translate(this.center.x, thix.center.y);
 
 		ellipse(this.loc.x(), this.loc.y(), 10, 10);
 		
@@ -63,7 +69,7 @@ function Planet(r, theta, speed, center) {
 	this.drawConnectingLine = function connectPlanet(otherPlanet) {
 		push();
 
-		translate(width/2, height/2);
+		translate(this.center.x, this.center.y);
 		strokeWeight(0.05);
 		line(this.loc.x(), this.loc.y(), otherPlanet.loc.x(), otherPlanet.loc.y());
 
