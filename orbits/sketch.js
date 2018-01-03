@@ -15,24 +15,29 @@ function setup() {
 	let midpoint = random(maxD*0.9);
 
 	// PLAY WITH THESE NUMBERS;
-	// Starting points
-	let s1 = random(1);
-	let s2 = random(2);
-	let s3 = random(4);
-
 	// THETA
 	let t1 = random(50, midpoint);
 	let t2 = random(t1, maxD);
 	let t3 = random(t2, maxD);
+
+	// Angles
+	let a1 = -90;
+	let a2 = -90;
+	let a3 = -90;
+
+	// Starting points
+	let s1 = random(1);
+	let s2 = random(2);
+	let s3 = random(4);
 
 	// Center points
 	let c1 = createVector(width/2, height/2);
 	let c2 = createVector(width/2, height/2);
 	let c3 = createVector(width/2, height/2);
 
-	p1 = new Planet(t1, -90, s1, c1);
-	p2 = new Planet(t2, -90, s2, c2);
-	p3 = new Planet(t3, -90, s3, c3);
+	p1 = new Planet(t1, a1, s1, c1);
+	p2 = new Planet(t2, a2, s2, c2);
+	p3 = new Planet(t3, a3, s3, c3);
 
 	console.log(`p1: ${p1}`);
 	console.log(`p2: ${p2}`);
