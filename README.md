@@ -4,6 +4,9 @@ Mixing logic and art is one of my passions and this is where I hold many of my s
 
 ### Demos
 
+* [Orbits](http://fuller.codes/creative-coding/orbits)
+	* Drawing lines between planets orbiting at different speeds
+
 * [Cubes](http://fuller.codes/creative-coding/Cubes/p5js-port/)
 	* Isometric cubes drawn at random. I want to add the option to specifiy colors, cubify an image, and other various rules.
 * [Mathematical Roses](http://fuller.codes/creative-coding/Math_Roses/)
