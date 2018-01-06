@@ -11,6 +11,8 @@ References:
 
 [The Orbital Velocities of the Planets](http://www.sjsu.edu/faculty/watkins/orbital.htm)
 
+[Orbital resonance and Solar cycles](https://arxiv.org/pdf/0903.5009.pdf)
+
 
 Questions:
 
