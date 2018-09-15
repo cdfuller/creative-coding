@@ -6,7 +6,7 @@ let xScale = 0.01;
 let yScale = 0.01;
 
 function setup() {
-  let canvas = createCanvas(400, 400);
+  let canvas = createCanvas(800, 800);
   canvas.parent("canvas");
   pixelDensity(1);
   zSlider = createSlider(0, 3, 0, 0.01);
