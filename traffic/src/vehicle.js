@@ -1,7 +1,10 @@
+const STATES = [ACCELERATING, BRAKING, STOPPED, COLLISION, CRUISING];
+
 class Vehicle {
   constructor(position) {
     this.position = position;
     this.speed = 0.007;
+    this.state = {};
   }
 
   draw() {
