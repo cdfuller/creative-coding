@@ -59,6 +59,8 @@ function drawCircle(positions) {
     let x = cos(theta) * r;
     let y = sin(theta) * r;
     ellipse(x, y, 10);
+    let xShort = x.toFixed(2);
+    text(`${xShort}`, x + 25, y + 25);
   }
 }
 

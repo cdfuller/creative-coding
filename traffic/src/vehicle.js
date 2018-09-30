@@ -19,6 +19,8 @@ class Vehicle {
     let d = this.next.position - this.position;
     if (d < 10) {
       this.speed = 0.3;
+    } else if ( d > 100) {
+      this.speed += random() / 100 * 10;
     } else {
       this.speed += random() / 100 * 5;
     }
