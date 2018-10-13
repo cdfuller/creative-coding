@@ -20,8 +20,6 @@ class Vehicle {
 
     if (d < 7) {
       this.speed = 0.3;
-    } else if ( d < 25) {
-      this.speed -= random() / 100 * 5;
     } else if ( d > 75) {
       this.speed += random() / 100 * 5;
     } else {
