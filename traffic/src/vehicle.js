@@ -16,19 +16,29 @@ class Vehicle {
   // } 
 
   update() {
-    let d = this.next.position - this.position;
-    if (d < 10) {
+    let d = (this.next.position + 1000 - this.position) % 1000;
+
+    if (d < 7) {
       this.speed = 0.3;
-    } else if ( d > 100) {
-      this.speed += random() / 100 * 10;
-    } else {
+    } else if ( d < 25) {
+      this.speed -= random() / 100 * 5;
+    } else if ( d > 75) {
       this.speed += random() / 100 * 5;
+    } else {
+      this.speed += random() / 100 * 2;
     }
     this.position = (this.position + this.speed) % 1000;
   }
 
   getPosition() {
     return this.position;
+  }
+
+  getState() {
+    return {
+      speed: this.speed,
+      position: this.position,
+    }
   }
 
 }

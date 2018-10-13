@@ -6,7 +6,7 @@ const RANDOM_SEED = NOISE_SEED;
 const NUM_FRAMES = 5000;
 const DEBUG_MODE = false;
 
-const VEHICLE_COUNT = 5;
+const VEHICLE_COUNT = 50;
 
 let vehicles = [];
 
@@ -34,17 +34,17 @@ function draw() {
   noFill();
   ellipse(width / 2, height/2, 450, 450);
 
-  let positions = [];
+  let states = [];
   for ( v of vehicles ) {
     v.update();
-    positions.push(v.getPosition());
+    states.push(v.getState());
   } 
   
   push();
   translate(width/2, height/2);
-  drawCircle(positions);
+  drawCircle(states);
   pop();
-  drawGraph(positions);
+  drawGraph(states);
 
   if (DEBUG_MODE) {
     if (frameCount % 100 == 0) printStatus();
@@ -52,15 +52,15 @@ function draw() {
   }
 }
 
-function drawCircle(positions) {
+function drawCircle(states) {
   let r = 225;
-  for (p of positions) {
-    let theta = translateCirclePosition(p);
+  for (p of states) {
+    let theta = translateCirclePosition(p.position);
     let x = cos(theta) * r;
     let y = sin(theta) * r;
-    ellipse(x, y, 10);
-    let xShort = x.toFixed(2);
-    text(`${xShort}`, x + 25, y + 25);
+    ellipse(x, y, 6);
+    let pShort = p.position.toFixed(2);
+    // text(`${pShort}`, x + 25, y + 25);
   }
 }
 
@@ -68,10 +68,11 @@ function translateCirclePosition(position) {
   return position / 1000 * TWO_PI;
 }
 
-function drawGraph(positions) {
-  for ( p of positions) {
-    let x = translateGraphPosition(p);
-    line(x, height-10, x, height-30);
+function drawGraph(states) {
+  for ( p of states) {
+    let x = translateGraphPosition(p.position);
+    let h = p.speed * 5;
+    line(x, height-10, x, height - 10 - h);
   }
 }
 
