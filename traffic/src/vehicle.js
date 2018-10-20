@@ -13,7 +13,7 @@ class Vehicle {
   //   let x = cos(this.position) * 225;
   //   let y = sin(this.position) * 225;
   //   ellipse(x, y, 10);
-  // } 
+  // }
 
   update() {
     let d = (this.next.position + 1000 - this.position) % 1000;

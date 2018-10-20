@@ -9,9 +9,12 @@ const DEBUG_MODE = false;
 const VEHICLE_COUNT = 50;
 
 let vehicles = [];
+let canvas;
+
+let averages = [];
 
 function setup() {
-  createCanvas(600, 600);
+  canvas = createCanvas(800, 800);
   background(51);
   noiseSeed(NOISE_SEED);
   randomSeed(RANDOM_SEED);
@@ -32,14 +35,14 @@ function draw() {
 
   stroke(255);
   noFill();
-  ellipse(width / 2, height/2, 450, 450);
+  ellipse(width / 2, height/2, 350, 350);
 
   let states = [];
-  for ( v of vehicles ) {
+  for (let v of vehicles ) {
     v.update();
     states.push(v.getState());
-  } 
-  
+  }
+
   push();
   translate(width/2, height/2);
   drawCircle(states);
@@ -50,10 +53,14 @@ function draw() {
     if (frameCount % 100 == 0) printStatus();
     if (frameCount == NUM_FRAMES) noLoop();
   }
+  if (frameCount % 10 == 0) {
+    logAvg(averages);
+  }
 }
 
 function drawCircle(states) {
-  let r = 225;
+  strokeWeight(1);
+  let r = 175;
   for (p of states) {
     let theta = translateCirclePosition(p.position);
     let x = cos(theta) * r;
@@ -69,12 +76,30 @@ function translateCirclePosition(position) {
 }
 
 function drawGraph(states) {
-  for ( p of states) {
+  let scale = 20;
+  strokeWeight(1);
+  let total = 0;
+  for (let p of states) {
+    total += p.speed;
     let x = translateGraphPosition(p.position);
-    let h = p.speed * 5;
+    let h = p.speed * scale;
     line(x, height-10, x, height - 10 - h);
   }
+  let avg = total / states.length;
+  let h = avg * scale;
+  strokeWeight(0.3);
+  line(0, height-10-h, width, height-10-h);
+  insertAvg(avg);
+  // console.log("Average: ", avg);
 }
+
+  // function drawConnectingLines(states) {
+  //   for (let s = 0; s < states.length; s++) {
+  //     let theta = translateCirclePosition(s.position);
+  //     let x = cos(theta) * r;
+  //     let x = cos(theta) * r;
+  //   }
+  // }
 
 function translateGraphPosition(position) {
   return position / 1000 * width;
@@ -98,3 +123,21 @@ function keyPressed() {
       break;
   }
 }
+
+
+function insertAvg(v) {
+  if (averages.length >= 500) {
+    averages.shift();
+  }
+  averages.push(v);
+}
+
+function logAvg() {
+  let total = 0;
+  for(let a of averages) {
+    total += a;
+  }
+  let avg = total / averages.length;
+  console.log(`Average(${averages.length}): ${avg.toFixed(3)}`)
+}
+
