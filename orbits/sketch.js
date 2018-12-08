@@ -64,7 +64,7 @@ function Planet(r, theta, speed, center) {
 		push();
 
 		noStroke();
-		translate(this.center.x, thix.center.y);
+		translate(this.center.x, this.center.y);
 
 		ellipse(this.loc.x(), this.loc.y(), 10, 10);
 		
