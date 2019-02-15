@@ -1,0 +1,17 @@
+{
+  "name": "cardiod-visualization",
+  "version": "1.0.0",
+  "description": "",
+  "main": "skectch.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/p5": "^0.7.2"
+  }
+}
