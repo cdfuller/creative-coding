@@ -29,7 +29,7 @@ function draw() {
     let a = getVector(i);
     let b = getVector(i * FACTOR);
     strokeWeight(LINE_WEIGHT);
-    line(a.x, b.x, a.y, b.y);
+    line(a.x, a.y, b.x, b.y);
   }
 
   FACTOR += 1;
