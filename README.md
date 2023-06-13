@@ -15,3 +15,7 @@ Mixing logic and art is one of my passions and this is where I hold many of my s
 	* Based off of [Coding Challenge #24: Perlin Noise Flow Field](https://www.youtube.com/watch?v=BjoM9oKOAKY) by Dan Shiffman
 * [Reas Circles](http://fuller.codes/creative-coding/Reas_Circles/)
 	* First steps towards recreating the [work of Casey Reas](http://reas.com/compendium_lecture/)
+
+### Tools
+* [p5.js blend modes](https://fuller.codes/creative-coding/tools/blend-modes/)
+	* Tool for understanding the different blend modes in p5
