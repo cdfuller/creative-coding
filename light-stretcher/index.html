@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Light Stretcher – Glitch Art Sketch</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js" defer></script>
+    <script src="sketch.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="control-panel" aria-label="Glitch controls">
+        <h1 class="app-title">Light Stretcher</h1>
+        <p class="app-tagline">
+          Drag an image onto the canvas and stretch its light along a chosen heading.
+        </p>
+
+        <div class="primary-actions">
+          <button id="file-select" type="button" class="accent-button emphasis">
+            Open Image…
+          </button>
+          <p class="primary-hint">
+            You can also drag &amp; drop or paste from clipboard.
+          </p>
+          <input
+            id="file-input"
+            type="file"
+            accept="image/png, image/jpeg, image/gif"
+            hidden
+          />
+        </div>
+
+        <div class="control-group">
+          <div class="label-row">
+            <label for="intensity-slider">Intensity</label>
+            <button
+              class="help-icon"
+              type="button"
+              aria-label="Intensity help"
+              data-tooltip="Controls repeat distance. Luminance 255 repeats the full intensity value.">
+              ?
+            </button>
+          </div>
+          <div class="slider-row">
+            <input
+              id="intensity-slider"
+              type="range"
+              min="0"
+              max="250"
+              step="1"
+              value="10"
+            />
+            <input
+              id="intensity-input"
+              type="number"
+              min="0"
+              max="250"
+              step="1"
+              value="10"
+              aria-label="Intensity value"
+            />
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="label-row">
+            <label for="direction-slider">Direction (°)</label>
+            <button
+              class="help-icon"
+              type="button"
+              aria-label="Direction help"
+              data-tooltip="Heading for the glitch trail. 0° points right and increases clockwise.">
+              ?
+            </button>
+          </div>
+          <div class="slider-row">
+            <input
+              id="direction-slider"
+              type="range"
+              min="0"
+              max="360"
+              step="10"
+              value="0"
+            />
+            <input
+              id="direction-input"
+              type="number"
+              min="0"
+              max="360"
+              step="10"
+              value="0"
+              aria-label="Direction degrees"
+            />
+            <div class="direction-display">
+              <span id="direction-arrow" aria-hidden="true" class="direction-arrow">➤</span>
+              <output id="direction-value">0°</output>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="label-row">
+            <label for="priority-select">Pixel Priority</label>
+            <button
+              class="help-icon"
+              type="button"
+              aria-label="Priority help"
+              data-tooltip="Choose how overlapping pixels decide who wins: by luminance, dominant hue, directional sweep, or channel dominance.">
+              ?
+            </button>
+          </div>
+          <select id="priority-select" class="select-input">
+            <option value="luminance" selected>Luminance</option>
+            <option value="hue-majority">Hue Majority</option>
+            <option value="directional">Directional Sweep</option>
+            <option value="channel">Channel Split</option>
+          </select>
+          <label class="inline-checkbox">
+            <input id="invert-priority" type="checkbox" />
+            <span>Invert priority</span>
+          </label>
+          <p id="priority-description" class="priority-description">
+            Brightest pixels claim the trail; invert to favor darker tones.
+          </p>
+        </div>
+
+        <div class="control-actions">
+          <div class="action-stack">
+            <button id="take-glitch" type="button" class="accent-button primary-action">
+              Take Glitch (⌘/Ctrl+Enter)
+            </button>
+            <button id="save-image" type="button" class="ghost-button">
+              Save Image
+            </button>
+          </div>
+          <button id="reset-glitch" type="button" class="danger-button">
+            Reset Image
+          </button>
+        </div>
+        <p class="hint">
+          Tip: 0° points right, 90° points down. Drag, paste, or open images any time.
+        </p>
+      </section>
+      <section class="canvas-wrapper">
+        <div id="p5-container" class="canvas-host" aria-label="Glitch canvas"></div>
+        <div class="drop-overlay" id="drop-overlay">
+          <p>Drop, paste, or open an image to begin</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -9,6 +9,8 @@ Mixing logic and art is one of my passions and this is where I hold many of my s
 
 * [Cubes](http://fuller.codes/creative-coding/Cubes/p5js-port/)
 	* Isometric cubes drawn at random. I want to add the option to specifiy colors, cubify an image, and other various rules.
+* [Light Stretcher](http://fuller.codes/creative-coding/light-stretcher/)
+	* Stretch bright pixels along configurable headings to layer glitch trails with multiple priority modes.
 * [Mathematical Roses](http://fuller.codes/creative-coding/Math_Roses/)
 	* Created with some modifications following the tutorial [Coding Challenge #55: Mathematical Rose Patterns](https://www.youtube.com/watch?v=f5QBExMNB1I) by Daniel Shiffman
 * [Perlin Noise Flow Fields](http://fuller.codes/creative-coding/Flow_Fields/)
