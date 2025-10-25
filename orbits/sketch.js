@@ -1,51 +1,65 @@
-const PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23];
-const FIBONACCI = [1, 2, 3, 5, 8, 13, 21];
+const NUMBER_POOLS = [
+    { name: "PRIMES", values: [2, 3, 5, 7, 11, 13, 17, 19, 23], scale: 0.1},
+    { name: "FIBONACCI", values: [1, 2, 3, 5, 8, 13, 21], scale: 0.1},
+    { name: "CIRCLE_DIVISORS", values: [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18], scale: 0.1},
+    // { name: "LARGE_CIRCLE_DIVISORS", values: [60, 72, 90, 120, 180], scale: 1},
+    { name: "SQUARE_NUMBERS", values: [1, 4, 9, 16, 25], scale: 0.1},
+    { name: "TRIANGULAR_NUMBERS", values: [1, 3, 6, 10, 15, 21], scale: 0.1},
+]
 
-let p1;
-let p2;
-let p3;
+let p1, p2, p3;
+
 
 function setup() {
 	let shortestSide = min(windowWidth, windowHeight);
+    console.log(`windowWidth: ${windowWidth}, windowHeight: ${windowHeight}, shortestSide: ${shortestSide}`);
 	createCanvas(shortestSide, shortestSide);
 	angleMode(DEGREES);
 	background(255);
 
-	let maxD = min(width, height) * 0.50;
-	let midpoint = random(maxD*0.9);
-
-	// PLAY WITH THESE NUMBERS;
-	// THETA
-	let t1 = random(50, midpoint);
-	let t2 = random(t1, maxD);
-	let t3 = random(t2, maxD);
+	// Radial distances
+    let minOrbitRadius = min(width, height) * 0.02;
+    let orbitPadding = 0.05;
+    let maxOrbitRadius = shortestSide * (1 - orbitPadding) / 2;
+    console.log(`minOrbitRadius: ${minOrbitRadius}, maxOrbitRadius: ${maxOrbitRadius}`);
+    // Give the first planet a smaller maximum orbit radius so that the others
+    // have room to orbit outside it.
+    let r1 = random(minOrbitRadius, maxOrbitRadius * 0.75);
+	let r2 = random(r1, maxOrbitRadius);
+	let r3 = random(r2, maxOrbitRadius);
 
 	// Angles
-	let a1 = -90;
-	let a2 = -90;
-	let a3 = -90;
+    // -90 to start at the top of the orbits
+    let angles = [-90, 30, 150];
+	let a1 = random(angles);
+	let a2 = random(angles);
+	let a3 = random(angles);
 
-	// Starting points
-	let s1 = random(1);
-	let s2 = random(2);
-	let s3 = random(4);
+    // Speeds
+    let numberPool = random(NUMBER_POOLS);
+    let values = numberPool.values;
+    let scale = numberPool.scale;
+
+    let s1 = random(values) * scale;
+    let s2 = random(values) * scale;
+    let s3 = random(values) * scale;
 
 	// Center points
 	let c1 = createVector(width/2, height/2);
 	let c2 = createVector(width/2, height/2);
 	let c3 = createVector(width/2, height/2);
 
-	p1 = new Planet(t1, a1, s1, c1);
-	p2 = new Planet(t2, a2, s2, c2);
-	p3 = new Planet(t3, a3, s3, c3);
+	p1 = new Planet(r1, a1, s1, c1);
+	p2 = new Planet(r2, a2, s2, c2);
+	p3 = new Planet(r3, a3, s3, c3);
 
+    console.log("numberPool:", numberPool.name, values.toString());
 	console.log(`p1: ${p1}`);
 	console.log(`p2: ${p2}`);
 	console.log(`p3: ${p3}`);
 }
 
 function draw() {
-	// p1.draw();
 	p1.update();
 	p2.update();
 	p3.update();
@@ -62,12 +76,9 @@ function Planet(r, theta, speed, center) {
 
 	this.draw = function drawPlanet() {
 		push();
-
 		noStroke();
 		translate(this.center.x, this.center.y);
-
 		ellipse(this.loc.x(), this.loc.y(), 10, 10);
-		
 		pop();
 	}
 
@@ -83,10 +94,11 @@ function Planet(r, theta, speed, center) {
 
 	this.update = function update() {
 		this.loc.theta += this.speed;
+        // this.loc.r -= 0.1;
 	}
 
 	this.toString = function planetToString() {
-		let r = this.loc.r.toFixed(2);
+		let r = this.loc.radius.toFixed(2);
 		let t = this.loc.theta.toFixed(2);
 		let x = this.loc.x().toFixed();
 		let y = this.loc.y().toFixed();
@@ -100,27 +112,23 @@ function Planet(r, theta, speed, center) {
 // }
 
 
-function PolarVector(r, theta) {
-	this.r = r;
+function PolarVector(radius, theta) {
+	this.radius = radius;
 	this.theta = theta;
 
-	this.x = () => this.r * cos(this.theta);
-	this.y = () => this.r * sin(this.theta);
-
+	this.x = () => this.radius * cos(this.theta);
+	this.y = () => this.radius * sin(this.theta);
 }
 
 
 function keyPressed() {
-	if (keyCode === 32) { // 32 === ' '
+	if (keyCode === 32) { // space
 		noLoop();
 		console.log("Stopped", frameCount);
-	} else if (keyCode === 76) { // l === 76
+	} else if (keyCode === 76) { // l => loop
 		console.log("looping");
 		loop();
-	} else if (keyCode === 83) { // s === 83
+	} else if (keyCode === 83) { // s => step
 		redraw();
 	}
-	// } else {
-	// 	console.log(keyCode);
-	// }
 }
